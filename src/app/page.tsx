@@ -19,6 +19,12 @@ const Page = () => {
     }
   };
 
+  const handleRestartButton = () => {
+    setAnswers([]);
+    setCurrentQuestion(0);
+    setShowResult(false);
+  };
+
   const handleAnswered = (answer: number) => {
     setAnswers([...answers, answer]);
     loadNextQuestion();
@@ -34,7 +40,11 @@ const Page = () => {
         </div>
         <div className="p-5 text-center border-t border-gray-700">
           {!showResult && `${currentQuestion + 1} of ${questions.length} question${questions.length === 1 ? "" : "s"}`}
-          {showResult && <button className="px-3 py-2 rounded-md bg-gray-700 text-white">Restart Quiz</button>}
+          {showResult && (
+            <button onClick={handleRestartButton} className="px-3 py-2 rounded-md bg-gray-700 text-white hover:cursor-pointer">
+              Restart Quiz
+            </button>
+          )}
         </div>
       </div>
     </div>
